@@ -131,6 +131,7 @@
     <Content Include="images\g7.jpg" />
     <Content Include="images\g8.jpg" />
     <Content Include="images\g9.jpg" />
+    <Content Include="images\icon.PNG" />
     <Content Include="images\icons.svg" />
     <Content Include="images\r1.jpg" />
     <Content Include="images\r2.jpg" />
