@@ -16,6 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
@@ -35,7 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="banner-top">
 			<div class="social-bnr-agileits">
 				<ul class="social-icons3">
-								<li><a href="#" class="fa fa-facebook icon-border facebook"> </a></li>					
+								<li><a href="https://www.facebook.com/MM-Travel-Agency-1633899670004494/?ft[qid]=6480308204651350387&ft[mf_story_key]=9122396178501692502&ft[ego_id]=1634720769922384&ft[ei]=&ft[fbfeed_location]=1&ft[insertion_position]=1&__md__=1" class="fa fa-facebook icon-border facebook"> </a></li>					
 							</ul>
 			</div>
 			<div class="contact-bnr-w3-agile">
@@ -55,6 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</li>-->
 				</ul>
+				
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -391,14 +393,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                      <div class="control-group form-group">
                         <div class="controls">
                             <label class="contact-p1">Message:</label>
-                            <textarea type="text" class="form-control" name="comments" id="comments" required data-validation-required-message="Please enter Comments or Message."></textarea>
+                            <textarea type="text" class="form-control" name="comments" id="msg" required data-validation-required-message="Please enter Comments or Message."></textarea>
 							<p class="help-block"></p>
 						</div>
                     </div>
                     <div id="success"></div>
                     <!-- For success/fail messages -->
-                    <button type="submit" class="btn btn-primary">Send</button>	
-				</form>            
+                    <button type="submit" id="send" class="btn btn-primary">Send</button>	
+				</form>   
+
+<script>
+	$("#send").click(function(){
+		
+		var name = $("#name").val();	
+		var email = $("#email").val();
+		var cell = $("#cell").val();
+		var msg= $("#msg").val();
+		
+		if(name == ""){
+			AlertError("Please Enter your name");
+		}
+		else if(email == ""){
+			AlertError("Please Enter your email address");
+		}
+		else if(!(email.includes("@"))){
+			AlertError("Please Enter valid email address");
+		}
+		else if(cell == ""){
+			AlertError("Please Enter your cell phone numer");
+		}
+		else if(msg == ""){
+			AlertError("Please Enter your  message");
+		}else{
+			
+			
+			AlertError("Thank you! Your message has been successfully sent. We will contact you very soon!");
+			$.post("email.php",
+    {
+        name: "Name :" + name + "  Cell : " + cell + " Email : " + email ,
+				msg : msg, email : email
+    },
+    function(data, status){
+        AlertError("Thank you! Your message has been successfully sent. We will contact you very soon!");
+    });
+
+	}
+	});
+	function AlertError(err){
+
+}
+	
+</script>				
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile1" data-aos="flip-right">
@@ -416,11 +461,15 @@ Phoenix
 </section>
 <!-- /contact -->
 			<div class="copy">
-		        <p>© 2017 M&M Travel Agency . All Rights Reserved |</a> </p>
+		        <p>© 2017 M&M
+
+
+
+				Travel Agency . All Rights Reserved |</a> </p>
 		    </div>
 <!--/footer -->
 <!-- js -->
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
 <!-- contact form -->
 <script src="js/jqBootstrapValidation.js"></script>
 <script src="js/contact_me.js"></script>	
